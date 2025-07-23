@@ -69,18 +69,19 @@ const Login = () => {
             className="btn btn-primary w-full"
             disabled={loading}
           >
-            {loading ? (
+            {/* {loading ? (
               <span className="loading loading-spinner loading-xs"></span>
             ) : (
               "Login"
-            )}
+            )} */}
+            Login
           </button>
         </form>
         <div className="divider">OR</div>
         <button
           className="btn btn-outline btn-accent w-full"
           onClick={handleGoogleSignIn}
-          disabled={loading}
+        
         >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"

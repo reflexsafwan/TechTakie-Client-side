@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
+import { saveUserInDb } from "../api/utils";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -52,6 +53,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email);
+      if (currentUser) {
+        saveUserInDb({ email: currentUser.email, role: "user" });
+      }
+
       if (currentUser?.email) {
         setUser(currentUser);
 
