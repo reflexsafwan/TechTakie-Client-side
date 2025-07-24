@@ -1,2 +1,26 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Tag input styles for dark card backgrounds */
+.ReactTags__tagInputField {
+  background-color: #1e293b !important; /* Tailwind slate-800, matches DaisyUI dark card */
+  color: #fff !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #06b6d4 !important; /* cyan-500 */
+  padding: 0.5rem 0.75rem !important;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+.ReactTags__tag {
+  background-color: #06b6d4 !important; /* cyan-500 */
+  color: #fff !important;
+  border-radius: 0.5rem !important;
+  padding: 0.25rem 0.75rem;
+  font-weight: 500;
+  border: none;
+}
+.ReactTags__remove {
+  color: #fff !important;
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
