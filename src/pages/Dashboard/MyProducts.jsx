@@ -39,31 +39,31 @@ const MyProducts = () => {
   });
 
   // Handler for delete
-//   const handleDelete = (id) => {
-//     Swal.fire({
-//       title: "Delete this product?",
-//       text: "This action cannot be undone.",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#06b6d4",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         // Call your delete mutation or axios here
-//         // Example:
-//         axiosSecure
-//           .delete(`/products/${id}`)
-//           .then(() => {
-//             toast.success("Product deleted!");
-//             navigate("/dashboard/my-products");
-//           })
-//           .catch(() => {
-//             toast.error("Failed to delete product.");
-//           });
-//       }
-//     });
-//   };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Delete this product?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#06b6d4",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call your delete mutation or axios here
+        // Example:
+        axiosSecure
+          .delete(`/products/${id}`)
+          .then(() => {
+            toast.success("Product deleted!");
+            navigate("/dashboard/my-products");
+          })
+          .catch(() => {
+            toast.error("Failed to delete product.");
+          });
+      }
+    });
+  };
 
   // Handler for update (navigate to update page)
   const handleUpdate = (id) => {
