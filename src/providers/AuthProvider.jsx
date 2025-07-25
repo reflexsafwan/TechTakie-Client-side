@@ -53,13 +53,15 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email, currentUser);
-       setUser(currentUser);
+      setUser(currentUser);
       if (currentUser) {
         saveUserInDb({
           email: currentUser?.email,
           role: "user",
           name: currentUser?.displayName,
           photoURL: currentUser?.photoURL,
+          subscriptionStatus: false,
+          staus: "not-verified",
         });
       }
 
@@ -72,7 +74,6 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         );
-        
       } else {
         setUser(currentUser);
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
