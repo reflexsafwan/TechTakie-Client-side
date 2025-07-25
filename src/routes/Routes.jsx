@@ -12,6 +12,7 @@ import ProductDetails from "../pages/Dashboard/ProductDetails";
 import UpdateProduct from "../pages/Dashboard/UpdateProduct ";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import ProductReviewQueue from "../pages/Dashboard/ProductReviewQueue";
+import FeatureProductsDetails from "../pages/Home/FeatureProductsDetails";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/product/:id",
+        element: <FeatureProductsDetails></FeatureProductsDetails>,
       },
     ],
   },

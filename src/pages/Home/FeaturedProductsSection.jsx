@@ -1,13 +1,14 @@
+
+
 import { useContext } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
+import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
 import Loading from "../../components/Loading";
 import toast from "react-hot-toast";
 import { FaArrowUp, FaStar } from "react-icons/fa";
 import { Link } from "react-router";
-import { AuthContext } from "../../providers/AuthProvider";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const FeaturedProductsSection = () => {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,7 @@ const FeaturedProductsSection = () => {
     },
   });
 
+  // Upvote logic for button
   const handleUpvote = (product) => {
     if (!user) {
       navigate("/login");
@@ -45,8 +47,14 @@ const FeaturedProductsSection = () => {
     if (
       product.ownerEmail === user.email ||
       product.upvotedUsers?.includes(user.email)
-    )
+    ) {
+      toast.error(
+        product.ownerEmail === user.email
+          ? "You can't upvote your own product."
+          : "You have already upvoted."
+      );
       return;
+    }
     upvoteMutation.mutate(product._id);
   };
 
@@ -78,7 +86,7 @@ const FeaturedProductsSection = () => {
               <div className="card-body flex-1 flex flex-col">
                 <Link
                   to={`/product/${p._id}`}
-                  className="card-title text-cyan-700 hover:text-cyan-500 duration-150"
+                  className="card-title text-cyan-700 hover:text-cyan-500 duration-150 cursor-pointer"
                 >
                   {p.name}
                 </Link>
@@ -91,11 +99,7 @@ const FeaturedProductsSection = () => {
                 </div>
                 <button
                   className="btn btn-sm btn-outline flex items-center gap-2 mt-auto"
-                  disabled={
-                    !user ||
-                    p.ownerEmail === user.email ||
-                    p.upvotedUsers?.includes(user.email)
-                  }
+                  // Button is always clickable, but logic handles the restriction
                   onClick={() => handleUpvote(p)}
                   title={
                     !user
