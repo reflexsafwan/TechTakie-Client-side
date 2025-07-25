@@ -1,133 +1,120 @@
-
 import { useContext } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useNavigate, Link } from "react-router";
+import { useNavigate } from "react-router";
+import Loading from "../../components/Loading";
 import toast from "react-hot-toast";
-import { FaArrowUp } from "react-icons/fa";
-import axios from "axios";
+import { FaArrowUp, FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
-import { QueryClient, useMutation, useQuery,  } from "@tanstack/react-query";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-const fetchFeaturedProducts = async () => {
-  const res = await axios.get(`${API_URL}/products/featured`);
-  return res.data;
-};
-
-const upvoteProduct = async ({ productId, userEmail }) => {
-  const res = await axios.post(
-    `${API_URL}/products/upvote`,
-    { productId, userEmail },
-    { withCredentials: true }
-  );
-  return res.data;
-};
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const FeaturedProductsSection = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
- const queryClient = new QueryClient();
 
+  // Fetch featured products
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["featuredProducts"],
-    queryFn: fetchFeaturedProducts,
+    queryFn: async () => {
+      const res = await axiosSecure.get("/featured-products");
+      return res.data;
+    },
   });
 
+  // Upvote mutation
   const upvoteMutation = useMutation({
-    mutationFn: upvoteProduct,
+    mutationFn: async (id) => {
+      await axiosSecure.post("/products/upvote", { productId: id });
+    },
     onSuccess: () => {
-      toast.success("Upvoted!");
       queryClient.invalidateQueries(["featuredProducts"]);
     },
     onError: (err) => {
-      toast.error(err?.response?.data?.message || "Upvote failed!");
+      toast.error(err?.response?.data?.message || "Upvote failed. Try again!");
     },
   });
 
-  const sortedProducts = [...products]
-    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-    .slice(0, 4);
+  const handleUpvote = (product) => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+    if (
+      product.ownerEmail === user.email ||
+      product.upvotedUsers?.includes(user.email)
+    )
+      return;
+    upvoteMutation.mutate(product._id);
+  };
+
+  if (isLoading) return <Loading />;
 
   return (
-    <section className="mt-10">
-      <h2 className="text-2xl font-bold mb-5 text-cyan-700">
-        Featured Products
+    <section className="my-12">
+      <h2 className="text-3xl font-bold mb-6 text-center text-cyan-400 flex items-center justify-center gap-2">
+        <FaStar className="text-yellow-400" /> Featured Products
       </h2>
-      {isLoading ? (
-        <div className="flex justify-center py-10">
-          <span className="loading loading-dots loading-lg"></span>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {sortedProducts.map((product) => {
-            const isOwner = user?.email === product.ownerEmail;
-            const alreadyUpvoted =
-              user && product.upvotedUsers?.includes(user.email);
-
-            return (
-              <div
-                key={product._id}
-                className="card bg-white shadow-md rounded-xl"
-              >
-                <figure>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-40 object-cover rounded-t-xl"
-                  />
-                </figure>
-                <div className="card-body">
-                  <Link
-                    to={`/product/${product._id}`}
-                    className="card-title text-base hover:text-cyan-600"
-                  >
-                    {product.name}
-                  </Link>
-                  <div className="flex flex-wrap gap-1 mb-2 mt-1">
-                    {product.tags?.map((tag) => (
-                      <span key={tag} className="badge badge-outline text-xs">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <button
-                    className="btn btn-outline btn-success btn-xs flex items-center gap-1"
-                    disabled={
-                      isOwner ||
-                      !user ||
-                      alreadyUpvoted ||
-                      upvoteMutation.isPending
-                    }
-                    onClick={() => {
-                      if (!user) {
-                        toast("Please login to upvote!");
-                        navigate("/login");
-                        return;
-                      }
-                      if (isOwner || alreadyUpvoted) return;
-                      upvoteMutation.mutate({
-                        productId: product._id,
-                        userEmail: user.email,
-                      });
-                    }}
-                  >
-                    <FaArrowUp />
-                    {product.upvotes}
-                  </button>
-                  <span className="text-xs text-gray-400 mt-2 block">
-                    {isOwner
-                      ? "You are the owner"
-                      : alreadyUpvoted
-                      ? "Upvoted"
-                      : ""}
-                  </span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {products.length === 0 ? (
+          <div className="col-span-4 text-center text-cyan-200">
+            No featured products yet.
+          </div>
+        ) : (
+          products.map((p) => (
+            <div
+              key={p._id}
+              className="card bg-base-100 shadow-lg hover:shadow-xl transition rounded-xl border border-cyan-100 flex flex-col"
+            >
+              <figure className="px-4 pt-4">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="rounded-xl w-full h-36 object-cover"
+                />
+              </figure>
+              <div className="card-body flex-1 flex flex-col">
+                <Link
+                  to={`/product/${p._id}`}
+                  className="card-title text-cyan-700 hover:text-cyan-500 duration-150"
+                >
+                  {p.name}
+                </Link>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {p.tags?.map((tag) => (
+                    <span key={tag} className="badge badge-info text-white">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
+                <button
+                  className="btn btn-sm btn-outline flex items-center gap-2 mt-auto"
+                  disabled={
+                    !user ||
+                    p.ownerEmail === user.email ||
+                    p.upvotedUsers?.includes(user.email)
+                  }
+                  onClick={() => handleUpvote(p)}
+                  title={
+                    !user
+                      ? "Login to upvote"
+                      : p.ownerEmail === user.email
+                      ? "You can't upvote your own product"
+                      : p.upvotedUsers?.includes(user.email)
+                      ? "You already upvoted"
+                      : "Upvote"
+                  }
+                >
+                  <FaArrowUp />
+                  <span>{p.upvotes || 0}</span>
+                </button>
               </div>
-            );
-          })}
-        </div>
-      )}
+            </div>
+          ))
+        )}
+      </div>
     </section>
   );
 };

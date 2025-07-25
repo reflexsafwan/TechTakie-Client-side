@@ -108,7 +108,7 @@ const MyProducts = () => {
                   <td>
                     <div className="flex flex-wrap gap-1">
                       {p.tags?.map((tag) => (
-                        <span key={tag} className="badge badge-info text-white">
+                        <span key={tag} className=" text-white p-4">
                           {tag}
                         </span>
                       ))}
@@ -134,7 +134,7 @@ const MyProducts = () => {
                       {p.upvotes}
                     </span>
                   </td>
-                  <td className="flex gap-2">
+                  <td className="flex gap-2 ">
                     <Link
                       to={`/dashboard/products/${p._id}`}
                       className="btn btn-xs btn-primary"
