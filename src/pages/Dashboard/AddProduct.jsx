@@ -102,7 +102,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="card w-full max-w-xl min-h-[60vh] bg-[#1e293b] shadow-2xl rounded-2xl p-8 flex flex-col items-center justify-center">
+    <div className="card w-full max-w-4xl bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-cyan-400">Add New Product</h2>
       <form className="w-full space-y-4" onSubmit={handleSubmit}>
         <input

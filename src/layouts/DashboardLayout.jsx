@@ -6,7 +6,7 @@ const DashboardLayout = () => (
     {/* Sidebar always on the left */}
     <DashboardSidebar />
     {/* Main content: fills right side */}
-    <div className="flex-1 flex items-center justify-center p-6">
+    <div className="flex-1 flex  ">
       {/* Outlet will render the card that fills most of the right side */}
       <Outlet />
     </div>

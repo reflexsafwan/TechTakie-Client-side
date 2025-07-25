@@ -25,7 +25,7 @@ const DashboardSidebar = () => {
   };
 
   return (
-    <aside className="w-72 min-h-screen bg-base-100 border-r flex flex-col justify-between p-4">
+    <aside className="w-72 min-h-screen bg-base-200 text-amber-50 border-r flex flex-col justify-between p-4">
       <div>
         <h3 className="text-2xl font-bold text-cyan-700 mb-6">Dashboard</h3>
         <nav className="flex flex-col gap-1">
@@ -34,7 +34,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaUser />
@@ -45,7 +45,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaPlus />
@@ -56,7 +56,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaList />
@@ -67,7 +67,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaClipboardCheck />
@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaChartPie />
@@ -100,7 +100,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaUsers />
@@ -111,7 +111,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaTag />

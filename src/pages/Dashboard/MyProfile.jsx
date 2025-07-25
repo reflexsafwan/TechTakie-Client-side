@@ -16,7 +16,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="card w-full max-w-xl min-h-[60vh] bg-white shadow-2xl rounded-2xl p-8 flex flex-col items-center justify-center">
+    <div className="card w-full max-w-4xl bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
       <img
         src={user?.photoURL || "/default-avatar.png"}
         alt={user?.displayName || "Anonymous"}
