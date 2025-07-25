@@ -53,6 +53,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email, currentUser);
+       setUser(currentUser);
       if (currentUser) {
         saveUserInDb({
           email: currentUser?.email,
@@ -63,8 +64,6 @@ const AuthProvider = ({ children }) => {
       }
 
       if (currentUser?.email) {
-        setUser(currentUser);
-
         // Get JWT token
         await axios.post(
           `${import.meta.env.VITE_API_URL}/jwt`,
@@ -73,6 +72,7 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         );
+        
       } else {
         setUser(currentUser);
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {

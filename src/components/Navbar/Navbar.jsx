@@ -10,7 +10,6 @@ const normalLink = "btn btn-ghost text-base";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
- 
 
   return (
     <div className="navbar bg-base-100 shadow-md px-3 md:px-8">
@@ -59,7 +58,11 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full border border-cyan-200">
-                <img src={user.photoURL || "/default-avatar.png"} alt="User" />
+                <img
+                  referrerPolicy="no-referrer"
+                  src={user.photoURL || "/default-avatar.png"}
+                  alt="User"
+                />
               </div>
             </div>
             <ul
