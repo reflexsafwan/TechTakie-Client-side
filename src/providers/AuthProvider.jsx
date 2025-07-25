@@ -52,9 +52,14 @@ const AuthProvider = ({ children }) => {
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log("CurrentUser-->", currentUser?.email);
+      console.log("CurrentUser-->", currentUser?.email, currentUser);
       if (currentUser) {
-        saveUserInDb({ email: currentUser.email, role: "user" });
+        saveUserInDb({
+          email: currentUser?.email,
+          role: "user",
+          name: currentUser?.displayName,
+          photoURL: currentUser?.photoURL,
+        });
       }
 
       if (currentUser?.email) {

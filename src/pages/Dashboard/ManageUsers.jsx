@@ -14,6 +14,7 @@ const ManageUsers = () => {
     queryKey: ["allUsers"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
+      console.log(res.data);
       return res.data;
     },
   });
@@ -62,8 +63,8 @@ const ManageUsers = () => {
                 <tr key={u._id}>
                   <td>
                     <img
-                      src={u.photoURL || "/default-avatar.png"}
-                      alt={u.name}
+                      src={u.photoURL}
+                      alt={u.displayName}
                       className="w-12 h-12 rounded-full border border-cyan-300 object-cover"
                     />
                   </td>
