@@ -16,6 +16,7 @@ import FeatureProductsDetails from "../pages/Home/FeatureProductsDetails";
 import ReportedContents from "../pages/Dashboard/ReportedContents";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 import ProductDetails2 from "../pages/Dashboard/productDetails2";
+import AdminStatistics from "../pages/Dashboard/AdminStatistics";
 
 export const router = createBrowserRouter([
   {
@@ -58,9 +59,8 @@ export const router = createBrowserRouter([
       //   element: <ProductDetails></ProductDetails>,
       // },
       {
-
         path: "products/:id",
-        element: <ProductDetails2></ProductDetails2>
+        element: <ProductDetails2></ProductDetails2>,
       },
 
       {
@@ -82,6 +82,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-coupons",
         element: <ManageCoupons></ManageCoupons>,
+      },
+      {
+        path: "statistics",
+        element: <AdminStatistics></AdminStatistics>,
       },
     ],
   },
