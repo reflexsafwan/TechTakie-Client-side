@@ -14,6 +14,8 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
 import ProductReviewQueue from "../pages/Dashboard/ProductReviewQueue";
 import FeatureProductsDetails from "../pages/Home/FeatureProductsDetails";
 import ReportedContents from "../pages/Dashboard/ReportedContents";
+import ManageCoupons from "../pages/Dashboard/ManageCoupons";
+import ProductDetails2 from "../pages/Dashboard/productDetails2";
 
 export const router = createBrowserRouter([
   {
@@ -25,9 +27,13 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+      // {
+      //   path: "/product/:id",
+      //   element: <FeatureProductsDetails></FeatureProductsDetails>,
+      // },
       {
         path: "/product/:id",
-        element: <FeatureProductsDetails></FeatureProductsDetails>,
+        element: <ProductDetails2></ProductDetails2>,
       },
     ],
   },
@@ -47,10 +53,16 @@ export const router = createBrowserRouter([
         path: "my-products",
         element: <MyProducts></MyProducts>,
       },
+      // {
+      //   path: "products/:id",
+      //   element: <ProductDetails></ProductDetails>,
+      // },
       {
+
         path: "products/:id",
-        element: <ProductDetails></ProductDetails>,
+        element: <ProductDetails2></ProductDetails2>
       },
+
       {
         path: "update-product/:id",
         element: <UpdateProduct />,
@@ -66,6 +78,10 @@ export const router = createBrowserRouter([
       {
         path: "reported-contents",
         element: <ReportedContents></ReportedContents>,
+      },
+      {
+        path: "manage-coupons",
+        element: <ManageCoupons></ManageCoupons>,
       },
     ],
   },

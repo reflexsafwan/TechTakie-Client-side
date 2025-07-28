@@ -31,7 +31,7 @@ const TrendingProductsSection = () => {
           products.map((p) => (
             <div
               key={p._id}
-              className="card bg-white shadow-lg rounded-xl border border-orange-100 hover:scale-105 transition"
+              className="card bg-[#1D232A] shadow-lg rounded-xl border border-orange-100 hover:scale-105 transition"
             >
               <figure className="px-4 pt-4">
                 <img

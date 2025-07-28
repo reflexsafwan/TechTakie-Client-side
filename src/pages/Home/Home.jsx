@@ -4,6 +4,7 @@ import FeaturedProductsSection from "./FeaturedProductsSection";
 import ValuePropositionSection from "../../components/Home/ValuePropositionSection";
 import TopContributorsSection from "../../components/Home/TopContributorsSection ";
 import TrendingProductsSection from "../../components/Home/TrendingProductsSection";
+import CouponCarouselSection from "../../components/Home/CouponCarouselSection";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HomeCarousel></HomeCarousel>
       <FeaturedProductsSection></FeaturedProductsSection>
       <TrendingProductsSection></TrendingProductsSection>
+      <CouponCarouselSection></CouponCarouselSection>
       <ValuePropositionSection></ValuePropositionSection>
       <TopContributorsSection></TopContributorsSection>
     </>

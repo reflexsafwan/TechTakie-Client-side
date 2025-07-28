@@ -1,7 +1,7 @@
 // src/components/DashboardSidebar.jsx
 import { useContext } from "react";
 
-import { NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import {
   FaUser,
   FaPlus,
@@ -15,8 +15,6 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 
-
-
 const DashboardSidebar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -29,7 +27,9 @@ const DashboardSidebar = () => {
   return (
     <aside className="w-72 min-h-screen bg-base-200 text-amber-50 border-r flex flex-col justify-between p-4">
       <div>
-        <h3 className="text-2xl font-bold text-cyan-700 mb-6">Dashboard</h3>
+        <Link to={"/"}>
+          <h3 className="text-2xl font-bold text-cyan-700 mb-6">Dashboard</h3>
+        </Link>
         <nav className="flex flex-col gap-1">
           <NavLink
             to="/dashboard/my-profile"
@@ -80,7 +80,7 @@ const DashboardSidebar = () => {
             className={({ isActive }) =>
               isActive
                 ? "bg-cyan-600 text-white rounded-lg px-4 py-2 flex items-center gap-2"
-                : "hover:bg-cyan-50 text-gray-700 rounded-lg px-4 py-2 flex items-center gap-2"
+                : "hover:bg-cyan-50 text-gray-500 rounded-lg px-4 py-2 flex items-center gap-2"
             }
           >
             <FaBug />
