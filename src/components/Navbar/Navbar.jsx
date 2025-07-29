@@ -60,7 +60,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full border border-cyan-200">
                 <img
                   referrerPolicy="no-referrer"
-                  src={user.photoURL || "/default-avatar.png"}
+                  src={user?.photoURL}
                   alt="User"
                 />
               </div>
