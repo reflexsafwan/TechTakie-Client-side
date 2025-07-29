@@ -17,6 +17,8 @@ import ReportedContents from "../pages/Dashboard/ReportedContents";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 import ProductDetails2 from "../pages/Dashboard/productDetails2";
 import AdminStatistics from "../pages/Dashboard/AdminStatistics";
+import ProductsPage from "../pages/ProductsPage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +36,15 @@ export const router = createBrowserRouter([
       // },
       {
         path: "/product/:id",
-        element: <ProductDetails2></ProductDetails2>,
+        element: (
+          <PrivateRoute>
+            <ProductDetails2></ProductDetails2>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/products",
+        element: <ProductsPage></ProductsPage>,
       },
     ],
   },
@@ -44,15 +54,27 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "my-profile",
-        element: <MyProfile></MyProfile>,
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-product",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-products",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <PrivateRoute>
+            <MyProducts></MyProducts>
+          </PrivateRoute>
+        ),
       },
       // {
       //   path: "products/:id",
@@ -65,27 +87,51 @@ export const router = createBrowserRouter([
 
       {
         path: "update-product/:id",
-        element: <UpdateProduct />,
+        element: (
+          <PrivateRoute>
+            <UpdateProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <PrivateRoute>
+            <ManageUsers></ManageUsers>
+          </PrivateRoute>
+        ),
       },
       {
         path: "review-queue",
-        element: <ProductReviewQueue></ProductReviewQueue>,
+        element: (
+          <PrivateRoute>
+            <ProductReviewQueue></ProductReviewQueue>
+          </PrivateRoute>
+        ),
       },
       {
         path: "reported-contents",
-        element: <ReportedContents></ReportedContents>,
+        element: (
+          <PrivateRoute>
+            <ReportedContents></ReportedContents>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-coupons",
-        element: <ManageCoupons></ManageCoupons>,
+        element: (
+          <PrivateRoute>
+            <ManageCoupons></ManageCoupons>
+          </PrivateRoute>
+        ),
       },
       {
         path: "statistics",
-        element: <AdminStatistics></AdminStatistics>,
+        element: (
+          <PrivateRoute>
+            <AdminStatistics></AdminStatistics>
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email, currentUser);
       setUser(currentUser);
+      console.log(currentUser);
       if (currentUser) {
         saveUserInDb({
           email: currentUser?.email,

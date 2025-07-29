@@ -40,7 +40,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="card w-full max-w-4xl bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
+    <div className="card w-full max-w-full bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-cyan-400">Manage Users</h2>
       {isLoading ? (
         <Loading />

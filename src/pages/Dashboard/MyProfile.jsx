@@ -20,7 +20,7 @@ const MyProfile = () => {
     queryKey: ["me"],
     queryFn: async () => {
       const res = await axiosSecure.get("/me");
-      console.log(res.data)
+      console.log(res.data);
       return res.data;
     },
     enabled: !!user?.email,
@@ -60,7 +60,7 @@ const MyProfile = () => {
     profile.role === "starter";
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-base-200">
+    <div className="card w-full max-w-full bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
       <div className="card max-w-md w-full bg-base-100 shadow-xl p-8 flex flex-col items-center">
         <img
           src={profile.photoURL || "/default-avatar.png"}
@@ -68,7 +68,7 @@ const MyProfile = () => {
           className="w-24 h-24 rounded-full border-2 border-cyan-400 object-cover mb-3"
         />
         <h2 className="text-xl font-bold mb-1 text-cyan-600 flex items-center gap-2">
-          {profile.displayName || "No Name"}{" "}
+          {profile.name || "No Name"}
           {isSubscribed && (
             <span className="badge badge-warning flex items-center gap-1">
               <FaCrown className="text-yellow-400" /> Member

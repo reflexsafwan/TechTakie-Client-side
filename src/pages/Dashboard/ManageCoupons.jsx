@@ -91,7 +91,7 @@ const ManageCoupons = () => {
   };
 
   return (
-    <div className="card w-full max-w-4xl bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
+    <div className="card w-full max-w-full bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-cyan-700">Manage Coupons</h2>
       <button
         className="btn btn-accent mb-5"
@@ -190,7 +190,7 @@ const ManageCoupons = () => {
               className="input input-bordered"
               required
             />
-            
+
             <div className="flex gap-3 mt-2">
               <button type="submit" className="btn btn-success flex-1">
                 {updateCouponMutation.isLoading ? "Updating..." : "Update"}

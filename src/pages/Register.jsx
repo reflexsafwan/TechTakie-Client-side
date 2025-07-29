@@ -205,6 +205,7 @@ import Loading from "../components/Loading";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../providers/AuthProvider";
+import { saveUserInDb } from "../api/utils";
 
 const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
@@ -273,7 +274,14 @@ const Register = () => {
 
       // 2. Update Firebase profile with name and photo
       await updateUserProfile(name, photo);
-
+      saveUserInDb({
+        email: email,
+        role: "user",
+        name: name,
+        photoURL: photo,
+        subscriptionStatus: false,
+        staus: "not-verified",
+      });
       // Success, user is handled by AuthProvider's onAuthStateChanged
       toast.success("Registration successful!");
       navigate("/");
@@ -288,6 +296,7 @@ const Register = () => {
     setLoading(true);
     try {
       await signInWithGoogle();
+      console.log(result);
 
       toast.success("Google sign-in successful!");
       navigate("/"); // Redirect handled by AuthProvider's onAuthStateChanged
