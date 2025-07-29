@@ -13,8 +13,8 @@ import { app } from "../firebase/firebase.config";
 import axios from "axios";
 import { saveUserInDb } from "../api/utils";
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
+
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = async () => {
+  const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
@@ -49,43 +49,45 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log("CurrentUser-->", currentUser?.email, currentUser);
       setUser(currentUser);
-      console.log(currentUser);
-      if (currentUser) {
-        saveUserInDb({
-          email: currentUser?.email,
-          role: "user",
-          name: currentUser?.displayName,
-          photoURL: currentUser?.photoURL,
-          subscriptionStatus: false,
-          staus: "not-verified",
-        });
-      }
 
+      const postedData = {
+        email: currentUser?.email,
+        role: "user",
+        name: currentUser?.displayName,
+        photoURL: currentUser?.photoURL,
+        subscriptionStatus: false,
+        staus: "not-verified",
+      };
+
+      // Save user regardless of displayName/photo (optional)
       if (currentUser?.email) {
-        // Get JWT token
-        await axios.post(
-          `${import.meta.env.VITE_API_URL}/jwt`,
-          {
-            email: currentUser?.email,
-          },
-          { withCredentials: true }
-        );
+        try {
+          if (currentUser?.photoURL && currentUser?.displayName) {
+            await saveUserInDb(postedData);
+          }
+          // Get JWT token
+          await axios.post(
+            `${import.meta.env.VITE_API_URL}/jwt`,
+            { email: currentUser.email },
+            { withCredentials: true }
+          );
+        } catch (err) {
+          console.error("User save/JWT failed", err);
+        }
       } else {
-        setUser(currentUser);
+        // Logout on client
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
           withCredentials: true,
         });
       }
+
       setLoading(false);
     });
-    return () => {
-      return unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {
