@@ -79,11 +79,11 @@ const FeaturedProductsSection = () => {
               key={p._id}
               className="card bg-base-100 shadow-lg hover:shadow-xl transition rounded-xl  flex flex-col"
             >
-              <figure className="">
+              <figure className="px-4">
                 <img
                   src={p.image}
                   alt={p.name}
-                  className="rounded-xl w-full h-96  object-cover"
+                  className="rounded-xl w-full h-72 object-cover"
                 />
               </figure>
               <div className="card-body flex-1 flex flex-col">
@@ -101,7 +101,7 @@ const FeaturedProductsSection = () => {
                   ))}
                 </div>
                 <button
-                  className="btn btn-sm  btn-info  flex items-center gap-2 mt-auto hover:bg-[#085a6f]"
+                  className="btn btn-sm  btn-info bg-[#06B6D4]  flex items-center gap-2 mt-auto hover:bg-[#0e88a7]"
                   // Button is always clickable, but logic handles the restriction
                   onClick={() => handleUpvote(p)}
                   title={

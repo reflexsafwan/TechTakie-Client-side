@@ -6,6 +6,7 @@ import TopContributorsSection from "../../components/Home/TopContributorsSection
 import TrendingProductsSection from "../../components/Home/TrendingProductsSection";
 import CouponCarouselSection from "../../components/Home/CouponCarouselSection";
 
+
 const Home = () => {
   return (
     <>
