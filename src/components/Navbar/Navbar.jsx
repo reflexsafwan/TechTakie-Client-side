@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
 
   return (
-    <div className="navbar bg-base-100 shadow-md px-3 md:px-8">
+    <div className="navbar bg-base-100 shadow-md px-3 md:px-8 sticky top-0 z-100">
       {/* Left: Logo */}
       <div className="navbar-start">
         <Link to="/" className="flex items-center gap-2">
