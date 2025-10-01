@@ -26,7 +26,7 @@ const TrendingProductsSection = () => {
       <p className="text-center mb-8 text-xl">
         "The Latest Tech Everyone’s Buzzing About"
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7  mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7  mx-auto">
         {products.length === 0 ? (
           <div className="col-span-3 text-center text-orange-600">
             No trending products yet.

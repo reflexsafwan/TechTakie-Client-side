@@ -61,10 +61,10 @@ const slides = [
 const HomeCarousel = () => (
   <section className="mt-6 w-full">
     <div className="text-center mb-5 w-4/5">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-cyan-700 leading-tight">
-        Welcome to <span className="text-blue-600">TechieTake</span>
+      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        Welcome to <span className="text-cyan-400">TechieTake</span>
       </h1>
-      <p className="mt-2 text-gray-600 text-base md:text-lg font-medium">
+      <p className="mt-2  text-base md:text-lg font-medium">
         Discover, upvote, and share the best new tech products, AI tools, apps,
         and more!
       </p>
