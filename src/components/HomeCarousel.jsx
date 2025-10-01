@@ -59,8 +59,8 @@ const slides = [
 ];
 
 const HomeCarousel = () => (
-  <section className="mt-6">
-    <div className="text-center mb-5">
+  <section className="mt-6 w-full">
+    <div className="text-center mb-5 w-4/5">
       <h1 className="text-4xl md:text-5xl font-extrabold text-cyan-700 leading-tight">
         Welcome to <span className="text-blue-600">TechieTake</span>
       </h1>
@@ -69,7 +69,7 @@ const HomeCarousel = () => (
         and more!
       </p>
     </div>
-    <div className="w-full rounded-xl shadow-md overflow-hidden">
+    <div className="w-full rounded-xl shadow-md overflow-hidden ">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 3500, disableOnInteraction: false }}

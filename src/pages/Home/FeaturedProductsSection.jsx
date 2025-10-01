@@ -62,9 +62,12 @@ const FeaturedProductsSection = () => {
 
   return (
     <section className="my-12">
-      <h2 className="text-3xl font-bold mb-6 text-center text-cyan-400 flex items-center justify-center gap-2">
-        <FaStar className="text-yellow-400" /> Featured Products
+      <h2 className="text-3xl font-bold mb-2 text-center text-cyan-400 flex items-center justify-center gap-2">
+        Featured Products
       </h2>
+      <p className="text-center mb-10 text-xl ">
+        "Explore the Latest Innovations in Tech"
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products.length === 0 ? (
           <div className="col-span-4 text-center text-cyan-200">
@@ -74,31 +77,31 @@ const FeaturedProductsSection = () => {
           products.map((p) => (
             <div
               key={p._id}
-              className="card bg-base-100 shadow-lg hover:shadow-xl transition rounded-xl border border-cyan-100 flex flex-col"
+              className="card bg-base-100 shadow-lg hover:shadow-xl transition rounded-xl  flex flex-col"
             >
-              <figure className="px-4 pt-4">
+              <figure className="">
                 <img
                   src={p.image}
                   alt={p.name}
-                  className="rounded-xl w-full h-36 object-cover"
+                  className="rounded-xl w-full h-96  object-cover"
                 />
               </figure>
               <div className="card-body flex-1 flex flex-col">
                 <Link
                   to={`/product/${p._id}`}
-                  className="card-title text-cyan-700 hover:text-cyan-500 duration-150 cursor-pointer"
+                  className="card-title text-cyan-500 hover:text-cyan-700 duration-150 cursor-pointer"
                 >
                   {p.name}
                 </Link>
                 <div className="flex flex-wrap gap-1 mb-2">
                   {p.tags?.map((tag) => (
-                    <span key={tag} className="badge badge-info text-white">
-                      {tag}
+                    <span key={tag} className=" text-white">
+                      Tags: {tag}
                     </span>
                   ))}
                 </div>
                 <button
-                  className="btn btn-sm btn-outline flex items-center gap-2 mt-auto"
+                  className="btn btn-sm  btn-info  flex items-center gap-2 mt-auto hover:bg-[#085a6f]"
                   // Button is always clickable, but logic handles the restriction
                   onClick={() => handleUpvote(p)}
                   title={
