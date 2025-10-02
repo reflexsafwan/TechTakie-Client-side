@@ -38,7 +38,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           {/* Right: Auth Buttons / User Profile */}
-          <div className="navbar-end gap-2">
+          <div className="navbar-end gap-2  ">
             {!user ? (
               <>
                 <Link

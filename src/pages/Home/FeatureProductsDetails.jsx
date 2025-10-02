@@ -60,8 +60,8 @@ const FeatureProductsDetails = () => {
   if (isLoading || !product) return <Loading />;
 
   return (
-    <div className="card w-full max-w-2xl min-h-[60vh] bg-[#1e293b] shadow-2xl rounded-2xl p-8 mx-auto mt-8">
-      <div className="flex flex-col md:flex-row gap-8">
+    <div className="card w-full min-h-[60vh] bg-[#1e293b] shadow-2xl rounded-2xl p-8 mx-auto mt-8 ">
+      <div className="flex flex-col md:flex-row gap-8 ">
         <img
           src={product.image}
           alt={product.name}

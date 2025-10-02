@@ -46,13 +46,13 @@ const ValuePropositionSection = () => {
           <div className="text-cyan-900 mt-1">Upvotes & Community Feedback</div>
         </div>
       </div> */}
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {stats.map((stat) => (
             <div
               key={stat.id}
               className="bg-gray-800 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform"
             >
-              <h2 className="text-4xl font-bold text-cyan-400">
+              <h2 className="text-2xl md:text-4xl font-bold text-cyan-400">
                 {inView && <CountUp end={stat.end} duration={10} />}{" "}
                 {stat.suffix}
               </h2>

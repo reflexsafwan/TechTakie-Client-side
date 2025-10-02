@@ -17,7 +17,8 @@ const slides = [
     bg: "from-cyan-700/80 via-cyan-700/20 to-transparent",
   },
   {
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    image:
+      "https://i.ibb.co.com/chtWjMWY/thisisengineering-yh-CHx8-Mc-Kc-unsplash.jpg",
     headline: (
       <>
         Discover Trending <span className="text-pink-300">AI Tools</span>
@@ -27,7 +28,8 @@ const slides = [
     bg: "from-blue-700/80 via-blue-700/10 to-transparent",
   },
   {
-    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
+    image:
+      "https://i.ibb.co.com/chtWjMWY/thisisengineering-yh-CHx8-Mc-Kc-unsplash.jpg",
     headline: (
       <>
         Join <span className="text-lime-200">TechieTake</span>
@@ -47,7 +49,8 @@ const slides = [
     bg: "from-emerald-600/70 via-emerald-200/20 to-transparent",
   },
   {
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    image:
+      "https://i.ibb.co.com/PvvhDFBQ/christina-wocintechchat-com-UTw3j-ao-IKM-unsplash.jpg",
     headline: (
       <>
         Explore <span className="text-orange-300">Games</span> & Mobile Apps
