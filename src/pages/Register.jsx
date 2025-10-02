@@ -6,7 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../providers/AuthProvider";
 import { saveUserInDb } from "../api/utils";
 import Loading from "../components/Loading";
-
+import animationData from "../assets/signUp.json";
+import Lottie from "lottie-react";
 const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
 const Register = () => {
@@ -94,11 +95,17 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-base-200">
+    <div className="flex flex-col md:flex-row min-h-screen items-center justify-center">
+      <div className="w-1/3 hidden md:block">
+        <Lottie animationData={animationData} loop={true} />
+      </div>
       <div className="card w-full max-w-md bg-base-100 shadow-xl p-6">
-        <h2 className="text-2xl font-bold text-center mb-6 text-cyan-600">
-          Register
+        <h2 className="text-2xl font-bold text-center mb-2 text-cyan-600">
+          "Register to Explore"
         </h2>
+        <p className="mb-6">
+          "Create Your Account to Unlock Exclusive Features"
+        </p>
         <form onSubmit={handleRegister} className="space-y-4">
           <input
             name="name"
@@ -147,7 +154,7 @@ const Register = () => {
           )}
           <button
             type="submit"
-            className="btn btn-primary w-full mt-4"
+            className="btn bg-[#10a9c4] w-full mt-4 hover:scale-105 transition hover: ease-in hover: duration-300 hover:bg-[#0c8196]"
             disabled={loading || photoUploading}
           >
             {loading ? <Loading /> : "Register"}
@@ -162,8 +169,11 @@ const Register = () => {
           <FcGoogle size={24} /> Sign in with Google
         </button>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
-          <a href="/login" className="text-cyan-600 hover:underline">
+          Already have an account?
+          <a
+            href="/login"
+            className="text-cyan-600 text-xl font-bold hover:underline ml-1 uppercase"
+          >
             Login
           </a>
         </div>
