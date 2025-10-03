@@ -50,7 +50,7 @@ const DashboardSidebar2 = () => {
   const isModerator = roleData.role === "moderator";
 
   return (
-    <aside className="w-72 min-h-screen bg-base-200 text-amber-50 border-r flex flex-col justify-between p-4">
+    <aside className=" min-h-screen bg-base-200 text-amber-50 border-r flex flex-col justify-between p-4">
       <div>
         <Link to={"/"}>
           <h3 className="text-2xl font-bold text-cyan-700 mb-6">Dashboard</h3>

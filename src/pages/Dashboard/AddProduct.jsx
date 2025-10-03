@@ -6,6 +6,7 @@ import { WithContext as ReactTagInput } from "react-tag-input";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../components/Loading";
+import Container from "../../components/Container";
 
 // imgbb key from your .env
 const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
@@ -102,96 +103,101 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="card w-full max-w-full bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
-      <h2 className="text-2xl font-bold mb-6 text-cyan-400">Add New Product</h2>
-      <form className="w-full space-y-4" onSubmit={handleSubmit}>
-        <input
-          name="name"
-          type="text"
-          placeholder="Product Name"
-          className="input input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
-          required
-        />
-        <div>
+    <Container>
+      {" "}
+      <div className="card  bg-[#1e293b] shadow-xl rounded-2xl p-6 mx-auto">
+        <h2 className="text-2xl font-bold mb-6 text-cyan-400">
+          Add New Product
+        </h2>
+        <form className="w-full space-y-4" onSubmit={handleSubmit}>
           <input
-            type="file"
-            accept="image/*"
-            className="file-input file-input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
-            onChange={handleImageUpload}
-            disabled={uploading}
+            name="name"
+            type="text"
+            placeholder="Product Name"
+            className="input input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
             required
           />
-          {uploading && (
-            <div className="mt-2">
-              <Loading /> {/* Custom spinner here */}
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              className="file-input file-input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
+              onChange={handleImageUpload}
+              disabled={uploading}
+              required
+            />
+            {uploading && (
+              <div className="mt-2">
+                <Loading /> {/* Custom spinner here */}
+              </div>
+            )}
+          </div>
+          {imageUrl && (
+            <div className="flex items-center mt-1">
+              <img
+                src={imageUrl}
+                alt="Preview"
+                className="w-16 h-16 rounded border-2 border-cyan-400 object-cover"
+              />
+              <span className="ml-2 text-green-400 text-xs">Image ready!</span>
             </div>
           )}
-        </div>
-        {imageUrl && (
-          <div className="flex items-center mt-1">
-            <img
-              src={imageUrl}
-              alt="Preview"
-              className="w-16 h-16 rounded border-2 border-cyan-400 object-cover"
-            />
-            <span className="ml-2 text-green-400 text-xs">Image ready!</span>
-          </div>
-        )}
-        <textarea
-          name="description"
-          placeholder="Description"
-          className="textarea textarea-bordered w-full bg-[#1e293b] text-white border-cyan-500"
-          rows={3}
-          required
-        />
-        {/* Owner Info */}
-        <div className="flex gap-3 items-center">
-          <img
-            src={user?.photoURL || "/default-avatar.png"}
-            alt={user?.displayName}
-            className="w-12 h-12 rounded-full border border-cyan-300"
+          <textarea
+            name="description"
+            placeholder="Description"
+            className="textarea textarea-bordered w-full bg-[#1e293b] text-white border-cyan-500"
+            rows={3}
+            required
           />
-          <div>
-            <p className="text-sm font-bold text-cyan-300">
-              {user?.displayName}
-            </p>
-            <p className="text-xs text-cyan-200">{user?.email}</p>
+          {/* Owner Info */}
+          <div className="flex gap-3 items-center">
+            <img
+              src={user?.photoURL || "/default-avatar.png"}
+              alt={user?.displayName}
+              className="w-12 h-12 rounded-full border border-cyan-300"
+            />
+            <div>
+              <p className="text-sm font-bold text-cyan-300">
+                {user?.displayName}
+              </p>
+              <p className="text-xs text-cyan-200">{user?.email}</p>
+            </div>
           </div>
-        </div>
-        {/* Tags */}
-        <label className="label">
-          <span className="label-text text-cyan-200">Tags</span>
-        </label>
-        <ReactTagInput
-          tags={tags}
-          handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleDrag={handleDrag}
-          placeholder="Add tags (e.g., ai, webapp, productivity)"
-          allowDragDrop={false}
-        />
-        {/* External Links */}
-        <input
-          name="externalLinks"
-          type="url"
-          placeholder="External Link (product site, github, etc)"
-          className="input input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
-          required
-        />
-        {/* Submit */}
-        <button
-          type="submit"
-          className="btn w-full mt-2 bg-indigo-500 hover:bg-indigo-600 text-white border-none"
-          disabled={loading || uploading}
-        >
-          {loading ? (
-            <Loading /> // Also can use here for submit
-          ) : (
-            "Submit Product"
-          )}
-        </button>
-      </form>
-    </div>
+          {/* Tags */}
+          <label className="label">
+            <span className="label-text text-cyan-200">Tags</span>
+          </label>
+          <ReactTagInput
+            tags={tags}
+            handleDelete={handleDelete}
+            handleAddition={handleAddition}
+            handleDrag={handleDrag}
+            placeholder="Add tags (e.g., ai, webapp, productivity)"
+            allowDragDrop={false}
+          />
+          {/* External Links */}
+          <input
+            name="externalLinks"
+            type="url"
+            placeholder="External Link (product site, github, etc)"
+            className="input input-bordered w-full bg-[#1e293b] text-white border-cyan-500"
+            required
+          />
+          {/* Submit */}
+          <button
+            type="submit"
+            className="btn w-full mt-2 bg-indigo-500 hover:bg-indigo-600 text-white border-none"
+            disabled={loading || uploading}
+          >
+            {loading ? (
+              <Loading /> // Also can use here for submit
+            ) : (
+              "Submit Product"
+            )}
+          </button>
+        </form>
+      </div>
+    </Container>
   );
 };
 
